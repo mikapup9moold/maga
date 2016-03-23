@@ -28,7 +28,7 @@ var start = 0;
 
 // Range of variables for the enemy which randomizes the values within the ranges
 var enemySpeed = [50, 300];
-var enemyRange = [1, 3];
+var enemyRange = [2, 3];
 
 // Difficulty or number of enemies that spawn in the game
 var enemyNum = 4;
@@ -159,7 +159,8 @@ Player.prototype.handleInput = function(key) {
     if (key == 'up')
         move.y += -GRID_Y;
     if (key == 'right')
-        move.x += GRID_X;
+        //move.x += GRID_X;
+        move.x += .5 * 100;
     if (key == 'down')
         move.y += GRID_Y;
     if (key == 'space')
@@ -277,11 +278,23 @@ document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: keys.l,
         38: keys.u,
-        39: keys.r,
+        //39: keys.r,
         40: keys.d,
         // Add space key used for endgame scenario
-        32: keys.s
+        32: keys.s,
+        87: keys.u,
+        //83: keys.d,
+        65: keys.l,
+        68: keys.r
+
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+document.addEventListener('keypress', function(e) {
+    var heldKeys = {
+        100: keys.r
+    };
+    player.handleInput(heldKeys[e.keyCode]);
+})
