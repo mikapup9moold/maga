@@ -68,7 +68,7 @@ Enemy.prototype.setup = function() {
 Enemy.prototype.update = function(dt) {
     // Multiply movement by dt parameter to ensure consistent speed for all devices
     this.x = this.x + (dt * this.speed);
-    if (this.x > 5 * GRID_X) {
+    if (this.x > 8 * GRID_X) {
         // When enemy reaches the end it is reinstantiated for complete pseudo randomness
         this.setup();
     }
@@ -128,7 +128,7 @@ Player.prototype.update = function() {
     // It then resets its value to the bound of stoppage.
     var self = this;
     self.collision();
-    if (move.x >= 0 && move.x <= 4 * GRID_X) {
+    if (move.x >= 0 && move.x <= 7 * GRID_X) {
         this.x = move.x;
     } else {
         move.x = this.x;
