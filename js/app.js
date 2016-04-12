@@ -119,8 +119,10 @@ Player.prototype.collision = function() {
     });
 };
 
+var pmc = 0;
+
 // Updates the current position of the player
-Player.prototype.update = function() {
+Player.prototype.update = function(dt) {
     // Use the handleInput function to update current position from keystrokes.
     // Bounds are (x: 0 to 404), (y: 55 to 387).
     // Global object 'move' holds the values for keys pressed.
@@ -128,11 +130,14 @@ Player.prototype.update = function() {
     // It then resets its value to the bound of stoppage.
     var self = this;
     self.collision();
-    if (move.x >= 0 && move.x <= 7 * GRID_X) {
-        this.x = move.x;
-    } else {
-        move.x = this.x;
+    if(this.x != move.x) {
+        this.x += 1;
     }
+    //if (move.x >= 0 && move.x <= 7 * GRID_X) {
+    //    this.x = move.x;
+    //} else {
+    //    move.x = this.x;
+    //}
     // If the player has scored send him back to the origin and reset the global move variable
     // Update the score
     if (move.y < GRID_Y + yOffset) {
@@ -159,8 +164,8 @@ Player.prototype.handleInput = function(key) {
     if (key == 'up')
         move.y += -GRID_Y;
     if (key == 'right')
-        //move.x += GRID_X;
-        move.x += .5 * 100;
+        move.x += GRID_X;
+        //move.x += .5 * 100;
     if (key == 'down')
         move.y += GRID_Y;
     if (key == 'space')
